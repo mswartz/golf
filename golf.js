@@ -27,6 +27,7 @@ Router.map(function() {
 });
 
 if (Meteor.isClient) {
+  //New Course
   Template.newCourse.events({
     'click input#course_submit': function () {
 
@@ -51,9 +52,18 @@ if (Meteor.isClient) {
     }
   });
 
+  // Courses
   Template.courses.helpers({
     'courses' : function(){
       return Courses.find().fetch();
+    }
+  });
+
+  Template.courses.events({
+    'click #delete_course' : function(){
+      if(confirm('are you sure you want to delete '+this.name+"?")){
+        Meteor.call('removeCourse', this._id);
+      }
     }
   });
 }//isClient

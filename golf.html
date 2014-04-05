@@ -37,7 +37,13 @@
 <template name="courses">
   <h1>All Courses</h1>
   {{#each courses}}
-	<h2>{{name}}</h2>
+	<table>
+		<tr>
+			<td><h2>{{name}}</h2></td>
+			<td><input type="submit" id="delete_course" data-id="{{_id}}" value="Delete"/></td>
+		</tr>
+	</table>
+
   {{/each}}
 </template>
 
@@ -133,7 +139,7 @@
 			<td>15</td>
 			<td><input type="number" min="0" class="hole-15-par"/></td>
 			<td><input type="number" min="0" class="hole-15-hcp"/></td>
-		</tr>5
+		</tr>
 
 		<tr>
 			<td>16</td>
