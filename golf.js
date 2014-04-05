@@ -94,6 +94,26 @@ if (Meteor.isClient) {
     'course' : function(){
       return Courses.findOne({'name' : Session.get('courseSelected')});
     },
+    'holes_out' : function(){
+      var holes = Courses.findOne({'name' : Session.get('courseSelected')}).holes;
+      var holes_out = [];
+
+      for(var i = 0; i<9; i++){
+        holes_out[i] = holes[i];
+      }
+
+      return holes_out;
+    },
+    'holes_in' : function(){
+      var holes = Courses.findOne({'name' : Session.get('courseSelected')}).holes;
+      var holes_in = [];
+
+      for(var i = 9; i<18; i++){
+        holes_in[i] = holes[i];
+      }
+
+      return holes_in;
+    },
     'editmode' : function(){
       if(Session.get('editmode')===true){
         return true;

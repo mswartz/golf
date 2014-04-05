@@ -224,14 +224,14 @@
 
 		<tbody>
 			<tr>
-				{{#each course.holes_out}}
+				{{#each holes_out}}
 					{{#unless editmode}}<td>{{par}}</td>{{/unless}}
 					{{#if editmode}}<td class="hole-{{num}}-par" contenteditable="true">{{par}}</td>{{/if}}
 				{{/each}}
 
 				<td>{{course.out_tot}}</td>
 
-				{{#each course.holes_in}}
+				{{#each holes_in}}
 					{{#unless editmode}}<td>{{par}}</td>{{/unless}}
 					{{#if editmode}}<td class="hole-{{num}}-par" contenteditable="true">{{par}}</td>{{/if}}
 				{{/each}}
