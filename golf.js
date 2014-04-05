@@ -1,3 +1,5 @@
+Courses = new Meteor.Collection("courses");
+
 Router.configure({
   layoutTemplate: 'masterLayout',
   notFoundTemplate: 'notFound',
@@ -9,6 +11,7 @@ Router.map(function() {
   this.route('newCourse', {path: '/newcourse'});
   this.route('newGame', {path: '/newgame'});
   this.route('games', {path: '/games'});
+  this.route('courses', {path: '/courses'});
   this.route('gameDetail', {
     path: '/games/:game_num',
     data: function () {
@@ -24,19 +27,36 @@ Router.map(function() {
 });
 
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to golf.";
-  };
+  Template.newCourse.events({
+    'click input#course_submit': function () {
 
-  Template.hello.events({
-    'click input': function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-        Meteor.call('doSomething');
+      var Course = {};
+      var holes = [];
+
+      Course.name = $('#course_name').val();
+
+      for(var i=1; i<18; i++){
+        var par = ".hole-"+i+"-par";
+        var hcp = ".hole-"+i+"-hcp";
+
+        holes[i] = {
+          'par' : parseInt($(par).val()),
+          'hcp' : parseInt($(hcp).val())
+        }
+      }
+
+      Course.holes = holes;
+
+     Meteor.call('addCourse', Course);
     }
   });
-}
+
+  Template.courses.helpers({
+    'courses' : function(){
+      return Courses.find().fetch();
+    }
+  });
+}//isClient
 
 if (Meteor.isServer) {
   Meteor.startup(function () {

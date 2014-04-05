@@ -1,6 +1,9 @@
 Meteor.methods({
-	'addCourse' : function(){
-		//add a course
+	'addCourse' : function(course){
+		Courses.insert(course);
+	},
+	'removeCourse' : function(course){
+		Courses.remove(course);
 	},
 	'addRound' : function(){
 		//add a round

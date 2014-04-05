@@ -3,8 +3,6 @@
 </head>
 
 <body>
-
-  {{> yield}}
 </body>
 
 
@@ -13,6 +11,7 @@
 		<ul class="navigation">
 			<li class="navlink"><a href="/">Home</a></li>
 			<li class="navlink"><a href="/games">Games</a></li>
+			<li class="navlink"><a href="/courses">Courses</a></li>
 			<li class="navlink"><a href="/newgame/">New Game</a></li>
 			<li class="navlink"><a href="/newcourse/">New Course</a></li>
 		</ul>
@@ -27,13 +26,19 @@
 
 <template name="home">
   <h1>Golf app!</h1>
-  {{greeting}}
 </template>
 
 
 <template name="games">
   <h1>All Games</h1>
-  {{greeting}}
+</template>
+
+
+<template name="courses">
+  <h1>All Courses</h1>
+  {{#each courses}}
+	<h2>{{name}}</h2>
+  {{/each}}
 </template>
 
 
@@ -54,96 +59,96 @@
 	<tbody id="holes">
 		<tr>
 			<td>1</td>
-			<td><input type="number" min="0" data-id="1-par"/></td>
-			<td><input type="number" min="0" data-id="1-hcp"/></td>
+			<td><input type="number" min="0" class="hole-1-par"/></td>
+			<td><input type="number" min="0" class="hole-1-hcp"/></td>
 		</tr>
 		<tr>
 			<td>2</td>
-			<td><input type="number" min="0" data-id="2-par"/></td>
-			<td><input type="number" min="0" data-id="2-hcp"/></td>
+			<td><input type="number" min="0" class="hole-2-par"/></td>
+			<td><input type="number" min="0" class="hole-2-hcp"/></td>
 		</tr>
 		<tr>
 			<td>3</td>
-			<td><input type="number" min="0" data-id="3-par"/></td>
-			<td><input type="number" min="0" data-id="3-hcp"/></td>
+			<td><input type="number" min="0" class="hole-3-par"/></td>
+			<td><input type="number" min="0" class="hole-3-hcp"/></td>
 		</tr>
 		<tr>
 			<td>4</td>
-			<td><input type="number" min="0" data-id="4-par"/></td>
-			<td><input type="number" min="0" data-id="4-hcp"/></td>
+			<td><input type="number" min="0" class="hole-4-par"/></td>
+			<td><input type="number" min="0" class="hole-4-hcp"/></td>
 		</tr>
 		<tr>
 			<td>5</td>
-			<td><input type="number" min="0" data-id="5-par"/></td>
-			<td><input type="number" min="0" data-id="5-hcp"/></td>
+			<td><input type="number" min="0" class="hole-5-par"/></td>
+			<td><input type="number" min="0" class="hole-5-hcp"/></td>
 		</tr>
 		<tr>
 			<td>6</td>
-			<td><input type="number" min="0" data-id="6-par"/></td>
-			<td><input type="number" min="0" data-id="6-hcp"/></td>
+			<td><input type="number" min="0" class="hole-6-par"/></td>
+			<td><input type="number" min="0" class="hole-6-hcp"/></td>
 		</tr>
 		<tr>
 			<td>7</td>
-			<td><input type="number" min="0" data-id="7-par"/></td>
-			<td><input type="number" min="0" data-id="7-hcp"/></td>
+			<td><input type="number" min="0" class="hole-7-par"/></td>
+			<td><input type="number" min="0" class="hole-7-hcp"/></td>
 		</tr>
 		<tr>
 			<td>8</td>
-			<td><input type="number" min="0" data-id="8-par"/></td>
-			<td><input type="number" min="0" data-id="8-hcp"/></td>
+			<td><input type="number" min="0" class="hole-8-par"/></td>
+			<td><input type="number" min="0" class="hole-8-hcp"/></td>
 		</tr>
 		<tr>
 			<td>9</td>
-			<td><input type="number" min="0" data-id="9-par"/></td>
-			<td><input type="number" min="0" data-id="9-hcp"/></td>
+			<td><input type="number" min="0" class="hole-9-par"/></td>
+			<td><input type="number" min="0" class="hole-9-hcp"/></td>
 		</tr>
 		<tr>
 			<td>10</td>
-			<td><input type="number" min="0" data-id="10-par"/></td>
-			<td><input type="number" min="0" data-id="10-hcp"/></td>
+			<td><input type="number" min="0" class="hole-10-par"/></td>
+			<td><input type="number" min="0" class="hole-10-hcp"/></td>
 		</tr>
 		<tr>
 			<td>11</td>
-			<td><input type="number" min="0" data-id="11-par"/></td>
-			<td><input type="number" min="0" data-id="11-hcp"/></td>
+			<td><input type="number" min="0" class="hole-11-par"/></td>
+			<td><input type="number" min="0" class="hole-11-hcp"/></td>
 		</tr>
 		<tr>
 			<td>12</td>
-			<td><input type="number" min="0" data-id="12-par"/></td>
-			<td><input type="number" min="0" data-id="12-hcp"/></td>
+			<td><input type="number" min="0" class="hole-12-par"/></td>
+			<td><input type="number" min="0" class="hole-12-hcp"/></td>
 		</tr>
 		<tr>
 			<td>13</td>
-			<td><input type="number" min="0" data-id="13-par"/></td>
-			<td><input type="number" min="0" data-id="13-hcp"/></td>
+			<td><input type="number" min="0" class="hole-13-par"/></td>
+			<td><input type="number" min="0" class="hole-13-hcp"/></td>
 		</tr>
 
 		<tr>
 			<td>14</td>
-			<td><input type="number" min="0" data-id="14-par"/></td>
-			<td><input type="number" min="0" data-id="14-hcp"/></td>
+			<td><input type="number" min="0" class="hole-14-par"/></td>
+			<td><input type="number" min="0" class="hole-14-hcp"/></td>
 		</tr>
 
 		<tr>
 			<td>15</td>
-			<td><input type="number" min="0" data-id="15-par"/></td>
-			<td><input type="number" min="0" data-id="15-hcp"/></td>
-		</tr>
+			<td><input type="number" min="0" class="hole-15-par"/></td>
+			<td><input type="number" min="0" class="hole-15-hcp"/></td>
+		</tr>5
 
 		<tr>
 			<td>16</td>
-			<td><input type="number" min="0" data-id="16-par"/></td>
-			<td><input type="number" min="0" data-id="16-hcp"/></td>
+			<td><input type="number" min="0" class="hole-16-par"/></td>
+			<td><input type="number" min="0" class="hole-16-hcp"/></td>
 		</tr>
 		<tr>
 			<td>17</td>
-			<td><input type="number" min="0" data-id="17-par"/></td>
-			<td><input type="number" min="0" data-id="17-hcp"/></td>
+			<td><input type="number" min="0" class="hole-17-par"/></td>
+			<td><input type="number" min="0" class="hole-17-hcp"/></td>
 		</tr>
 		<tr>
 			<td>18</td>
-			<td><input type="number" min="0" data-id="18-par"/></td>
-			<td><input type="number" min="0" data-id="18-hcp"/></td>
+			<td><input type="number" min="0" class="hole-18-par"/></td>
+			<td><input type="number" min="0" class="hole-18-hcp"/></td>
 		</tr>
 	</tbody>
   </table>
