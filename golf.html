@@ -3,11 +3,180 @@
 </head>
 
 <body>
-  {{> hello}}
+
+  {{> yield}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
+
+<template name="masterLayout">
+	<nav>
+		<ul class="navigation">
+			<li class="navlink"><a href="/">Home</a></li>
+			<li class="navlink"><a href="/games">Games</a></li>
+			<li class="navlink"><a href="/newgame/">New Game</a></li>
+			<li class="navlink"><a href="/newcourse/">New Course</a></li>
+		</ul>
+	</nav>
+
+  <div id="content">
+    {{> yield}}
+  </div>
+</template>
+
+
+
+<template name="home">
+  <h1>Golf app!</h1>
   {{greeting}}
-  <input type="button" value="Click" />
+</template>
+
+
+<template name="games">
+  <h1>All Games</h1>
+  {{greeting}}
+</template>
+
+
+<template name="newCourse">
+  <h1>Add Course</h1>
+
+<form>
+	<label for="course_name">Course Name</label>
+	<input type="text" id="course_name"/>
+
+  <table>
+	<thead>
+		<th>Hole</th>
+		<th>Par</th>
+		<th>Handicap</th>
+	</thead>
+
+	<tbody id="holes">
+		<tr>
+			<td>1</td>
+			<td><input type="number" min="0" data-id="1-par"/></td>
+			<td><input type="number" min="0" data-id="1-hcp"/></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td><input type="number" min="0" data-id="2-par"/></td>
+			<td><input type="number" min="0" data-id="2-hcp"/></td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td><input type="number" min="0" data-id="3-par"/></td>
+			<td><input type="number" min="0" data-id="3-hcp"/></td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td><input type="number" min="0" data-id="4-par"/></td>
+			<td><input type="number" min="0" data-id="4-hcp"/></td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td><input type="number" min="0" data-id="5-par"/></td>
+			<td><input type="number" min="0" data-id="5-hcp"/></td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td><input type="number" min="0" data-id="6-par"/></td>
+			<td><input type="number" min="0" data-id="6-hcp"/></td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td><input type="number" min="0" data-id="7-par"/></td>
+			<td><input type="number" min="0" data-id="7-hcp"/></td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td><input type="number" min="0" data-id="8-par"/></td>
+			<td><input type="number" min="0" data-id="8-hcp"/></td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td><input type="number" min="0" data-id="9-par"/></td>
+			<td><input type="number" min="0" data-id="9-hcp"/></td>
+		</tr>
+		<tr>
+			<td>10</td>
+			<td><input type="number" min="0" data-id="10-par"/></td>
+			<td><input type="number" min="0" data-id="10-hcp"/></td>
+		</tr>
+		<tr>
+			<td>11</td>
+			<td><input type="number" min="0" data-id="11-par"/></td>
+			<td><input type="number" min="0" data-id="11-hcp"/></td>
+		</tr>
+		<tr>
+			<td>12</td>
+			<td><input type="number" min="0" data-id="12-par"/></td>
+			<td><input type="number" min="0" data-id="12-hcp"/></td>
+		</tr>
+		<tr>
+			<td>13</td>
+			<td><input type="number" min="0" data-id="13-par"/></td>
+			<td><input type="number" min="0" data-id="13-hcp"/></td>
+		</tr>
+
+		<tr>
+			<td>14</td>
+			<td><input type="number" min="0" data-id="14-par"/></td>
+			<td><input type="number" min="0" data-id="14-hcp"/></td>
+		</tr>
+
+		<tr>
+			<td>15</td>
+			<td><input type="number" min="0" data-id="15-par"/></td>
+			<td><input type="number" min="0" data-id="15-hcp"/></td>
+		</tr>
+
+		<tr>
+			<td>16</td>
+			<td><input type="number" min="0" data-id="16-par"/></td>
+			<td><input type="number" min="0" data-id="16-hcp"/></td>
+		</tr>
+		<tr>
+			<td>17</td>
+			<td><input type="number" min="0" data-id="17-par"/></td>
+			<td><input type="number" min="0" data-id="17-hcp"/></td>
+		</tr>
+		<tr>
+			<td>18</td>
+			<td><input type="number" min="0" data-id="18-par"/></td>
+			<td><input type="number" min="0" data-id="18-hcp"/></td>
+		</tr>
+	</tbody>
+  </table>
+
+  <input type="submit" id="course_submit"/>
+</form>
+
+</template>
+
+<template name="newGame">
+  <h1>Add Game</h1>
+  {{greeting}}
+</template>
+
+
+<template name="gameDetail">
+  <h1>Game Detail</h1>
+  {{greeting}}
+</template>
+
+<template name="courseDetail">
+  <h1>Course Detail</h1>
+  {{greeting}}
+</template>
+
+
+<template name="notFound">
+  <h1>Not Found</h1>
+  {{greeting}}
+</template>
+
+
+<template name="loading">
+  <h1>loading</h1>
+  {{greeting}}
 </template>
