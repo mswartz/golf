@@ -39,7 +39,7 @@
   {{#each courses}}
 	<table>
 		<tr>
-			<td><h2>{{name}}</h2></td>
+			<td><h2><a href="/courses/{{name}}">{{name}}</a></h2></td>
 			<td><input type="submit" id="delete_course" data-id="{{_id}}" value="Delete"/></td>
 		</tr>
 	</table>
@@ -65,96 +65,96 @@
 	<tbody id="holes">
 		<tr>
 			<td>1</td>
-			<td><input type="number" min="0" class="hole-0-par"/></td>
-			<td><input type="number" min="0" class="hole-0-hcp"/></td>
-		</tr>
-		<tr>
-			<td>2</td>
 			<td><input type="number" min="0" class="hole-1-par"/></td>
 			<td><input type="number" min="0" class="hole-1-hcp"/></td>
 		</tr>
 		<tr>
-			<td>3</td>
+			<td>2</td>
 			<td><input type="number" min="0" class="hole-2-par"/></td>
 			<td><input type="number" min="0" class="hole-2-hcp"/></td>
 		</tr>
 		<tr>
-			<td>4</td>
+			<td>3</td>
 			<td><input type="number" min="0" class="hole-3-par"/></td>
 			<td><input type="number" min="0" class="hole-3-hcp"/></td>
 		</tr>
 		<tr>
-			<td>5</td>
+			<td>4</td>
 			<td><input type="number" min="0" class="hole-4-par"/></td>
 			<td><input type="number" min="0" class="hole-4-hcp"/></td>
 		</tr>
 		<tr>
-			<td>6</td>
+			<td>5</td>
 			<td><input type="number" min="0" class="hole-5-par"/></td>
 			<td><input type="number" min="0" class="hole-5-hcp"/></td>
 		</tr>
 		<tr>
-			<td>7</td>
+			<td>6</td>
 			<td><input type="number" min="0" class="hole-6-par"/></td>
 			<td><input type="number" min="0" class="hole-6-hcp"/></td>
 		</tr>
 		<tr>
-			<td>8</td>
+			<td>7</td>
 			<td><input type="number" min="0" class="hole-7-par"/></td>
 			<td><input type="number" min="0" class="hole-7-hcp"/></td>
 		</tr>
 		<tr>
-			<td>9</td>
+			<td>8</td>
 			<td><input type="number" min="0" class="hole-8-par"/></td>
 			<td><input type="number" min="0" class="hole-8-hcp"/></td>
 		</tr>
 		<tr>
-			<td>10</td>
+			<td>9</td>
 			<td><input type="number" min="0" class="hole-9-par"/></td>
 			<td><input type="number" min="0" class="hole-9-hcp"/></td>
 		</tr>
 		<tr>
-			<td>11</td>
+			<td>10</td>
 			<td><input type="number" min="0" class="hole-10-par"/></td>
 			<td><input type="number" min="0" class="hole-10-hcp"/></td>
 		</tr>
 		<tr>
-			<td>12</td>
+			<td>11</td>
 			<td><input type="number" min="0" class="hole-11-par"/></td>
 			<td><input type="number" min="0" class="hole-11-hcp"/></td>
 		</tr>
 		<tr>
-			<td>13</td>
+			<td>12</td>
 			<td><input type="number" min="0" class="hole-12-par"/></td>
 			<td><input type="number" min="0" class="hole-12-hcp"/></td>
 		</tr>
-
 		<tr>
-			<td>14</td>
+			<td>13</td>
 			<td><input type="number" min="0" class="hole-13-par"/></td>
 			<td><input type="number" min="0" class="hole-13-hcp"/></td>
 		</tr>
 
 		<tr>
-			<td>15</td>
+			<td>14</td>
 			<td><input type="number" min="0" class="hole-14-par"/></td>
 			<td><input type="number" min="0" class="hole-14-hcp"/></td>
 		</tr>
 
 		<tr>
-			<td>16</td>
+			<td>15</td>
 			<td><input type="number" min="0" class="hole-15-par"/></td>
 			<td><input type="number" min="0" class="hole-15-hcp"/></td>
 		</tr>
+
 		<tr>
-			<td>17</td>
+			<td>16</td>
 			<td><input type="number" min="0" class="hole-16-par"/></td>
 			<td><input type="number" min="0" class="hole-16-hcp"/></td>
 		</tr>
 		<tr>
-			<td>18</td>
+			<td>17</td>
 			<td><input type="number" min="0" class="hole-17-par"/></td>
 			<td><input type="number" min="0" class="hole-17-hcp"/></td>
+		</tr>
+		<tr>
+			<td>18</td>
+			<td><input type="number" min="0" class="hole-18-par"/></td>
+			<td><input type="number" min="0" class="hole-18-hcp"/></td>
 		</tr>
 	</tbody>
   </table>
@@ -176,8 +176,22 @@
 </template>
 
 <template name="courseDetail">
+
   <h1>Course Detail</h1>
-	<h1>{{course.name}}</h1>
+	{{#unless editmode}}<h1>{{course.name}}</h1>{{/unless}}
+	{{#if editmode}}<h1 id="course_name" contenteditable="true">{{course.name}}</h1>{{/if}}
+
+	{{#if editmode}}
+		<p>YOU ARE EDITING</p>
+	{{/if}}
+	{{#unless editmode}}
+		<input type="submit" id="edit_course" value="edit"/>
+	{{/unless}}
+	{{#if editmode}}
+		<input type="submit" id="update_course" value="save"/>
+	{{/if}}
+
+	<input type="submit" id="delete_course" value="delete"/>
 	<table>
 		<thead>
 			<tr>
@@ -211,13 +225,15 @@
 		<tbody>
 			<tr>
 				{{#each course.holes_out}}
-					<td>{{par}}</td>
+					{{#unless editmode}}<td>{{par}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-par" contenteditable="true">{{par}}</td>{{/if}}
 				{{/each}}
 
 				<td>{{course.out_tot}}</td>
 
 				{{#each course.holes_in}}
-					<td>{{par}}</td>
+					{{#unless editmode}}<td>{{par}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-par" contenteditable="true">{{par}}</td>{{/if}}
 				{{/each}}
 
 				<td>{{course.in_tot}}</td>

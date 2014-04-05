@@ -14,14 +14,17 @@ Router.map(function() {
   this.route('courses', {path: '/courses'});
   this.route('gameDetail', {
     path: '/games/:game_num',
-    data: function () {
+    data: function() {
       alert(this.params.game_num);
     }
   });
   this.route('courseDetail', {
     path: '/courses/:course_name',
-    data: function () {
+    data: function(){
       Session.set('courseSelected', this.params.course_name);
+    },
+    onStop: function() {
+      Session.set('courseSelected', undefined);
     }
   });
 });
@@ -32,44 +35,33 @@ if (Meteor.isClient) {
     'click input#course_submit': function () {
 
       var Course = {};
-      var holes_out = [];
-      var holes_in = [];
+      var holes = [];
       var out_tot = 0;
       var in_tot = 0;
 
       Course.name = $('#course_name').val();
 
-      for(var i=0; i<9; i++){
+      for(var i=1; i<19; i++){
         var par = ".hole-"+i+"-par";
         var hcp = ".hole-"+i+"-hcp";
 
-        holes_out[i] = {
+        holes[i-1] = {
+          'num' : i,
           'par' : parseInt($(par).val()),
           'hcp' : parseInt($(hcp).val())
         }
       }
 
-      for(var i=0; i<9; i++){
-        var par = ".hole-"+i+"-par";
-        var hcp = ".hole-"+i+"-hcp";
-
-        holes_in[i] = {
-          'par' : parseInt($(par).val()),
-          'hcp' : parseInt($(hcp).val())
-        }
+      for(var i = 0; i<9; i++){
+        out_tot = out_tot + holes[i].par;
       }
 
-      for(var i = 0; i<holes_out.length; i++){
-        out_tot = out_tot + holes_out[i].par;
+      for(var i = 9; i<18; i++){
+        in_tot = in_tot + holes[i].par;
       }
 
-      for(var i = 0; i<holes_in.length; i++){
-        in_tot = in_tot + holes_in[i].par;
-      }
-
-      Course.holes_out = holes_out;
+      Course.holes = holes;
       Course.out_tot = out_tot;
-      Course.holes_in = holes_in;
       Course.in_tot = in_tot;
       Course.tot = out_tot + in_tot;
 
@@ -97,10 +89,33 @@ if (Meteor.isClient) {
   });
 
 
-  // Courses
+  // Course Detail
   Template.courseDetail.helpers({
     'course' : function(){
       return Courses.findOne({'name' : Session.get('courseSelected')});
+    },
+    'editmode' : function(){
+      if(Session.get('editmode')===true){
+        return true;
+      }
+    }
+  });
+
+  Template.courseDetail.events({
+    'click #edit_course' : function(){
+      Session.set('editmode', true);
+    },
+    'click #update_course' : function(){
+      alert('updated!');
+      Session.set('editmode', false);
+    },
+    'click #delete_course' : function(){
+      var course = Courses.findOne({'name' : Session.get('courseSelected')});
+
+      if(confirm('Are you sure you want to delete '+course.name+'?')){
+        Meteor.call('removeCourse', course._id);
+        Router.go('courses');
+      }
     }
   });
 
