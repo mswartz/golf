@@ -65,96 +65,96 @@
 	<tbody id="holes">
 		<tr>
 			<td>1</td>
+			<td><input type="number" min="0" class="hole-0-par"/></td>
+			<td><input type="number" min="0" class="hole-0-hcp"/></td>
+		</tr>
+		<tr>
+			<td>2</td>
 			<td><input type="number" min="0" class="hole-1-par"/></td>
 			<td><input type="number" min="0" class="hole-1-hcp"/></td>
 		</tr>
 		<tr>
-			<td>2</td>
+			<td>3</td>
 			<td><input type="number" min="0" class="hole-2-par"/></td>
 			<td><input type="number" min="0" class="hole-2-hcp"/></td>
 		</tr>
 		<tr>
-			<td>3</td>
+			<td>4</td>
 			<td><input type="number" min="0" class="hole-3-par"/></td>
 			<td><input type="number" min="0" class="hole-3-hcp"/></td>
 		</tr>
 		<tr>
-			<td>4</td>
+			<td>5</td>
 			<td><input type="number" min="0" class="hole-4-par"/></td>
 			<td><input type="number" min="0" class="hole-4-hcp"/></td>
 		</tr>
 		<tr>
-			<td>5</td>
+			<td>6</td>
 			<td><input type="number" min="0" class="hole-5-par"/></td>
 			<td><input type="number" min="0" class="hole-5-hcp"/></td>
 		</tr>
 		<tr>
-			<td>6</td>
+			<td>7</td>
 			<td><input type="number" min="0" class="hole-6-par"/></td>
 			<td><input type="number" min="0" class="hole-6-hcp"/></td>
 		</tr>
 		<tr>
-			<td>7</td>
+			<td>8</td>
 			<td><input type="number" min="0" class="hole-7-par"/></td>
 			<td><input type="number" min="0" class="hole-7-hcp"/></td>
 		</tr>
 		<tr>
-			<td>8</td>
+			<td>9</td>
 			<td><input type="number" min="0" class="hole-8-par"/></td>
 			<td><input type="number" min="0" class="hole-8-hcp"/></td>
 		</tr>
 		<tr>
-			<td>9</td>
+			<td>10</td>
 			<td><input type="number" min="0" class="hole-9-par"/></td>
 			<td><input type="number" min="0" class="hole-9-hcp"/></td>
 		</tr>
 		<tr>
-			<td>10</td>
+			<td>11</td>
 			<td><input type="number" min="0" class="hole-10-par"/></td>
 			<td><input type="number" min="0" class="hole-10-hcp"/></td>
 		</tr>
 		<tr>
-			<td>11</td>
+			<td>12</td>
 			<td><input type="number" min="0" class="hole-11-par"/></td>
 			<td><input type="number" min="0" class="hole-11-hcp"/></td>
 		</tr>
 		<tr>
-			<td>12</td>
+			<td>13</td>
 			<td><input type="number" min="0" class="hole-12-par"/></td>
 			<td><input type="number" min="0" class="hole-12-hcp"/></td>
 		</tr>
+
 		<tr>
-			<td>13</td>
+			<td>14</td>
 			<td><input type="number" min="0" class="hole-13-par"/></td>
 			<td><input type="number" min="0" class="hole-13-hcp"/></td>
 		</tr>
 
 		<tr>
-			<td>14</td>
+			<td>15</td>
 			<td><input type="number" min="0" class="hole-14-par"/></td>
 			<td><input type="number" min="0" class="hole-14-hcp"/></td>
 		</tr>
 
 		<tr>
-			<td>15</td>
+			<td>16</td>
 			<td><input type="number" min="0" class="hole-15-par"/></td>
 			<td><input type="number" min="0" class="hole-15-hcp"/></td>
 		</tr>
-
 		<tr>
-			<td>16</td>
+			<td>17</td>
 			<td><input type="number" min="0" class="hole-16-par"/></td>
 			<td><input type="number" min="0" class="hole-16-hcp"/></td>
 		</tr>
 		<tr>
-			<td>17</td>
+			<td>18</td>
 			<td><input type="number" min="0" class="hole-17-par"/></td>
 			<td><input type="number" min="0" class="hole-17-hcp"/></td>
-		</tr>
-		<tr>
-			<td>18</td>
-			<td><input type="number" min="0" class="hole-18-par"/></td>
-			<td><input type="number" min="0" class="hole-18-hcp"/></td>
 		</tr>
 	</tbody>
   </table>
@@ -177,7 +177,54 @@
 
 <template name="courseDetail">
   <h1>Course Detail</h1>
-  {{greeting}}
+	<h1>{{course.name}}</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>1</th>
+				<th>2</th>
+				<th>3</th>
+				<th>4</th>
+				<th>5</th>
+				<th>6</th>
+				<th>7</th>
+				<th>8</th>
+				<th>9</th>
+
+				<th>Out</th>
+
+				<th>10</th>
+				<th>11</th>
+				<th>12</th>
+				<th>13</th>
+				<th>14</th>
+				<th>15</th>
+				<th>16</th>
+				<th>17</th>
+				<th>18</th>
+
+				<th>In</th>
+				<th>Tot</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				{{#each course.holes_out}}
+					<td>{{par}}</td>
+				{{/each}}
+
+				<td>{{course.out_tot}}</td>
+
+				{{#each course.holes_in}}
+					<td>{{par}}</td>
+				{{/each}}
+
+				<td>{{course.in_tot}}</td>
+				<td>{{course.tot}}</td>
+			</tr>
+		</tbody>
+	</table>
 </template>
 
 

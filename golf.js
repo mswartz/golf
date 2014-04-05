@@ -18,10 +18,10 @@ Router.map(function() {
       alert(this.params.game_num);
     }
   });
-  this.route('courseeDetail', {
+  this.route('courseDetail', {
     path: '/courses/:course_name',
     data: function () {
-      alert(this.params.course_name);
+      Session.set('courseSelected', this.params.course_name);
     }
   });
 });
@@ -32,25 +32,54 @@ if (Meteor.isClient) {
     'click input#course_submit': function () {
 
       var Course = {};
-      var holes = [];
+      var holes_out = [];
+      var holes_in = [];
+      var out_tot = 0;
+      var in_tot = 0;
 
       Course.name = $('#course_name').val();
 
-      for(var i=1; i<18; i++){
+      for(var i=0; i<9; i++){
         var par = ".hole-"+i+"-par";
         var hcp = ".hole-"+i+"-hcp";
 
-        holes[i] = {
+        holes_out[i] = {
           'par' : parseInt($(par).val()),
           'hcp' : parseInt($(hcp).val())
         }
       }
 
-      Course.holes = holes;
+      for(var i=0; i<9; i++){
+        var par = ".hole-"+i+"-par";
+        var hcp = ".hole-"+i+"-hcp";
 
-     Meteor.call('addCourse', Course);
+        holes_in[i] = {
+          'par' : parseInt($(par).val()),
+          'hcp' : parseInt($(hcp).val())
+        }
+      }
+
+      for(var i = 0; i<holes_out.length; i++){
+        out_tot = out_tot + holes_out[i].par;
+      }
+
+      for(var i = 0; i<holes_in.length; i++){
+        in_tot = in_tot + holes_in[i].par;
+      }
+
+      Course.holes_out = holes_out;
+      Course.out_tot = out_tot;
+      Course.holes_in = holes_in;
+      Course.in_tot = in_tot;
+      Course.tot = out_tot + in_tot;
+
+      console.log(Course);
+
+      Meteor.call('addCourse', Course);
+      Router.go('courses');
     }
   });
+
 
   // Courses
   Template.courses.helpers({
@@ -66,6 +95,16 @@ if (Meteor.isClient) {
       }
     }
   });
+
+
+  // Courses
+  Template.courseDetail.helpers({
+    'course' : function(){
+      return Courses.findOne({'name' : Session.get('courseSelected')});
+    }
+  });
+
+
 }//isClient
 
 if (Meteor.isServer) {
