@@ -239,6 +239,22 @@
 				<td>{{course.in_tot}}</td>
 				<td>{{course.tot}}</td>
 			</tr>
+			<tr>
+				{{#each holes_out}}
+					{{#unless editmode}}<td>{{hcp}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-hcp" contenteditable="true">{{hcp}}</td>{{/if}}
+				{{/each}}
+
+				<td>X</td>
+
+				{{#each holes_in}}
+					{{#unless editmode}}<td>{{hcp}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-hcp" contenteditable="true">{{hcp}}</td>{{/if}}
+				{{/each}}
+
+				<td>X</td>
+				<td>X</td>
+			</tr>
 		</tbody>
 	</table>
 </template>
