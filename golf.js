@@ -158,11 +158,13 @@ if (Meteor.isClient) {
       Course.out_tot = out_tot;
       Course.in_tot = in_tot;
       Course.tot = out_tot + in_tot;
+
       console.log(course_id);
       console.log(Course);
 
       Meteor.call('updateCourse', course_id, Course);
 
+      Router.go("/courses/"+Course.name);
       Session.set('editmode', false);
     },
     'click #delete_course' : function(){
