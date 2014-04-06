@@ -1,0 +1,83 @@
+<template name="courseDetail">
+
+  <h1>Course Detail</h1>
+	{{#unless editmode}}<h1>{{course.name}}</h1>{{/unless}}
+	{{#if editmode}}<h1 id="course_name" contenteditable="true">{{course.name}}</h1>{{/if}}
+
+	{{#if editmode}}
+		<p>YOU ARE EDITING</p>
+	{{/if}}
+	{{#unless editmode}}
+		<input type="submit" id="edit_course" value="edit"/>
+	{{/unless}}
+	{{#if editmode}}
+		<input type="submit" id="update_course" value="save"/>
+	{{/if}}
+
+	<input type="submit" id="delete_course" value="delete"/>
+	<table>
+		<thead>
+			<tr>
+				<th>1</th>
+				<th>2</th>
+				<th>3</th>
+				<th>4</th>
+				<th>5</th>
+				<th>6</th>
+				<th>7</th>
+				<th>8</th>
+				<th>9</th>
+
+				<th>Out</th>
+
+				<th>10</th>
+				<th>11</th>
+				<th>12</th>
+				<th>13</th>
+				<th>14</th>
+				<th>15</th>
+				<th>16</th>
+				<th>17</th>
+				<th>18</th>
+
+				<th>In</th>
+				<th>Tot</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				{{#each holes_out}}
+					{{#unless editmode}}<td>{{par}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-par" contenteditable="true">{{par}}</td>{{/if}}
+				{{/each}}
+
+				<td>{{course.out_tot}}</td>
+
+				{{#each holes_in}}
+					{{#unless editmode}}<td>{{par}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-par" contenteditable="true">{{par}}</td>{{/if}}
+				{{/each}}
+
+				<td>{{course.in_tot}}</td>
+				<td>{{course.tot}}</td>
+			</tr>
+			<tr>
+				{{#each holes_out}}
+					{{#unless editmode}}<td>{{hcp}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-hcp" contenteditable="true">{{hcp}}</td>{{/if}}
+				{{/each}}
+
+				<td>X</td>
+
+				{{#each holes_in}}
+					{{#unless editmode}}<td>{{hcp}}</td>{{/unless}}
+					{{#if editmode}}<td class="hole-{{num}}-hcp" contenteditable="true">{{hcp}}</td>{{/if}}
+				{{/each}}
+
+				<td>X</td>
+				<td>X</td>
+			</tr>
+		</tbody>
+	</table>
+</template>

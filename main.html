@@ -1,0 +1,35 @@
+<head>
+  <title>Golf App</title>
+</head>
+
+<body>
+</body>
+
+
+<template name="masterLayout">
+	<nav>
+		<ul class="navigation">
+			<li class="navlink"><a href="/">Home</a></li>
+			<li class="navlink"><a href="/games">Games</a></li>
+			<li class="navlink"><a href="/courses">Courses</a></li>
+			<li class="navlink"><a href="/newgame/">New Game</a></li>
+			<li class="navlink"><a href="/newcourse/">New Course</a></li>
+		</ul>
+	</nav>
+
+  <div id="content">
+    {{> yield}}
+  </div>
+</template>
+
+
+<template name="notFound">
+  <h1>Not Found</h1>
+  {{greeting}}
+</template>
+
+
+<template name="loading">
+  <h1>loading</h1>
+  {{greeting}}
+</template>

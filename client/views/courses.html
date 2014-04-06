@@ -1,0 +1,12 @@
+<template name="courses">
+  <h1>All Courses</h1>
+  {{#each courses}}
+	<table>
+		<tr>
+			<td><h2><a href="/courses/{{name}}">{{name}}</a></h2></td>
+			<td><input type="submit" id="delete_course" data-id="{{_id}}" value="Delete"/></td>
+		</tr>
+	</table>
+
+  {{/each}}
+</template>
