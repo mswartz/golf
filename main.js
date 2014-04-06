@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('newGame', {path: '/newgame'});
   this.route('games', {path: '/games'});
   this.route('courses', {path: '/courses'});
+  this.route('users', {path: '/users'});
   this.route('gameDetail', {
     path: '/games/:game_num',
     data: function() {

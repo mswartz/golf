@@ -1,0 +1,11 @@
+<template name="users">
+  <h1>All Users</h1>
+  {{#each users}}
+	<table>
+		<tr>
+			<td><h2><a href="/users/{{profile.name}}">{{profile.name}}</a></h2></td>
+		</tr>
+	</table>
+
+  {{/each}}
+</template>
